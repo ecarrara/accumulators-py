@@ -17,10 +17,8 @@ addons:
       - python2.7
       - python2.7-dev
 
-compiler:
-  - g++
-
 before_install:
+  - export CXX=g++-4.9; export CC=gcc-4.9
   - pip install --user --upgrade pip virtualenv
   - virtualenv venv
   - source venv/bin/activate
