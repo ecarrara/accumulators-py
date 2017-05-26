@@ -1,0 +1,33 @@
+sudo: false
+
+language: cpp
+
+cache:
+  apt: true
+
+addons:
+  apt:
+    sources:
+      - boost-latest
+      - ubuntu-toolchain-r-test
+    packages:
+      - gcc-4.9
+      - g++-4.9
+      - libboost1.55-all-dev
+      - python2.7
+      - python2.7-dev
+
+compiler:
+  - g++
+
+before_install:
+  - pip install --user --upgrade pip virtualenv
+  - virtualenv venv
+  - source venv/bin/activate
+
+install:
+  - python setup.py install
+  - pip install -r requirements-test.txt
+
+script:
+  - pytest tests
